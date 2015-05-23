@@ -12,7 +12,7 @@ namespace OX
         public int size { get
             
         {
-        return 30;
+        return 20;
         }
              set{}}
         public int[][] board;

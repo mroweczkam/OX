@@ -26,7 +26,18 @@ namespace OX.VM
             NewGame();
             gridMain = GridMain;
 
-            MoveCmd = new RelayCommand(pars => Mark());
+            MarkCmd = new RelayCommand(pars => Mark());
+
+            MoveLeftCmdPlayer1 = new RelayCommand(pars => MoveLeft(player1));
+            MoveRightCmdPlayer1 = new RelayCommand(pars => MoveRight(player1));
+            MoveUpCmdPlayer1 = new RelayCommand(pars => MoveUp(player1));
+            MoveDownCmdPlayer1 = new RelayCommand(pars => MoveDown(player1));
+            
+            MoveLeftCmdPlayer2 = new RelayCommand(pars => MoveLeft(player2));
+            MoveRightCmdPlayer2 = new RelayCommand(pars => MoveRight(player2));
+            MoveUpCmdPlayer2 = new RelayCommand(pars => MoveUp(player2));
+            MoveDownCmdPlayer2 = new RelayCommand(pars => MoveDown(player2));
+
             drawBoard();
             Mark();
         }
@@ -75,11 +86,51 @@ namespace OX.VM
             set { }
         }
 
-        public ICommand MoveCmd { get; set; }
+        public ICommand MarkCmd { get; set; }
+        public ICommand MoveLeftCmdPlayer1 { get; set; }
+        public ICommand MoveRightCmdPlayer1 { get; set; }
+        public ICommand MoveUpCmdPlayer1 { get; set; }
+        public ICommand MoveDownCmdPlayer1 { get; set; }
+        public ICommand MoveLeftCmdPlayer2 { get; set; }
+        public ICommand MoveRightCmdPlayer2 { get; set; }
+        public ICommand MoveUpCmdPlayer2 { get; set; }
+        public ICommand MoveDownCmdPlayer2 { get; set; }
+
 
         private void Reset()
         {
             game.newGame();
+            drawBoard();
+        }
+
+
+        private void MoveLeft(Player player)
+        {
+            if (player.position.y - 1 > -1)
+                player.position.y = player.position.y - 1;
+            drawBoard();
+
+        }
+
+        private void MoveRight(Player player)
+        {
+            if (player.position.y + 1 < game.size)
+                player.position.y = player.position.y + 1;
+            drawBoard();
+
+        }
+
+        private void MoveUp(Player player)
+        {
+            if (player.position.x - 1 > -1 )
+                player.position.x = player.position.x - 1;
+            drawBoard();
+        }
+
+        private void MoveDown(Player player)
+        {
+            if (player.position.x + 1 < game.size)
+                player.position.x = player.position.x + 1;
             drawBoard();
         }
 
@@ -94,8 +145,6 @@ namespace OX.VM
                 OnPropertyChanged("TimeLeftPlayer1");
             }
         }
-
-
 
         private string _timeLeftPlayer2;
         public string TimeLeftPlayer2
@@ -113,8 +162,6 @@ namespace OX.VM
             game.mark(1, 1, currentPlayer.sign);
             countTime();
         }
-
-
 
         private void ChnageCurrentUser()
         {

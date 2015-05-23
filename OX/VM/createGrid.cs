@@ -48,7 +48,6 @@ namespace OX.VM
                     if (position1.x == i && position1.y == j)
                     {
                         rec.Stroke = Brushes.Red;
-                      
                     }
 
                     if (position2.x == i && position2.y == j)
@@ -57,10 +56,6 @@ namespace OX.VM
                     }
                    
                     grid.Children.Add(rec);
-
-
-
-
 
                     StackPanel stcPanel = new StackPanel();
                     stcPanel.HorizontalAlignment = HorizontalAlignment.Center;
