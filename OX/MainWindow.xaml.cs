@@ -32,10 +32,7 @@ namespace OX
             var gameVM = new GameVM(GridMain);
             this.DataContext = gameVM;
 
-            
-
-
-
         }
+
     }
 }

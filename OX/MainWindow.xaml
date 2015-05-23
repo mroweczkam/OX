@@ -2,21 +2,39 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="MainWindow" Height="900" Width="1000">
+
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding Player1LeftCmd}" Key="Left" />
+        <KeyBinding Command="{Binding Player1RightCmd}" Key="Right" />
+        <KeyBinding Command="{Binding Player1UpCmd}" Key="Up" />
+        <KeyBinding Command="{Binding Player1DownCmd}" Key="Down" />
+
+        <KeyBinding Command="{Binding Player2LeftCmd}" Key="A" />
+        <KeyBinding Command="{Binding Player2RightCmd}" Key="D" />
+        <KeyBinding Command="{Binding Player2UpCmd}" Key="W" />
+        <KeyBinding Command="{Binding Player2DownCmd}" Key="S" />
+
+        <KeyBinding Command="{Binding Player2MarkCmd}" Key="Space" />
+        <KeyBinding Command="{Binding Player1MarkCmd}" Key="Enter" />
+    </Window.InputBindings>
+
     <Grid Name="GridMain" ShowGridLines="True">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="165*" />
+            <ColumnDefinition Width="630*" />
         </Grid.ColumnDefinitions>
         <Label Content="Board size:" HorizontalAlignment="Left" Margin="26,745,0,0" VerticalAlignment="Top" FontSize="15"/>
-        <RadioButton GroupName="BoardSize" Content="Small" HorizontalAlignment="Left" Margin="29,777,0,0" VerticalAlignment="Top" IsChecked="True"/>
-        <RadioButton GroupName="BoardSize" Content="Midium" HorizontalAlignment="Left" Margin="29,799,0,0" VerticalAlignment="Top"/>
-        <RadioButton GroupName="BoardSize" Content="Large" HorizontalAlignment="Left" Margin="29,824,0,0" VerticalAlignment="Top"/>
-        <Button Content="New Game" HorizontalAlignment="Left" Margin="16,23,0,0" VerticalAlignment="Top" Width="135"/>
-        <Label Content="{Binding TimeLeftPlayer1}" HorizontalAlignment="Left" Margin="16,163,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="134" Height="25" Background="Bisque"  ></Label>
-        
-        <Label Content="{Binding TimeLeftPlayer2}" HorizontalAlignment="Left" Margin="16,195,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="134" Height="25" Background="Bisque"  ></Label>
+        <RadioButton GroupName="BoardSize" Content="Small" HorizontalAlignment="Left" Margin="29,777,0,0" VerticalAlignment="Top" IsChecked="True" Focusable="False"/>
+        <RadioButton GroupName="BoardSize" Content="Midium" HorizontalAlignment="Left" Margin="29,799,0,0" VerticalAlignment="Top" Focusable="False"/>
+        <RadioButton GroupName="BoardSize" Content="Large" HorizontalAlignment="Left" Margin="29,824,0,0" VerticalAlignment="Top" Focusable="False"/>
+        <Button Content="New Game" Command="{Binding NewGameCmd}" HorizontalAlignment="Left" Margin="16,23,0,0" VerticalAlignment="Top" Width="135" Focusable="False"/>
+        <Label Content="{Binding TimeLeftPlayer1}" HorizontalAlignment="Left" Margin="16,163,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="134" Height="25" Background="{Binding Player1Color}"  ></Label>
+
+        <Label Content="{Binding TimeLeftPlayer2}" HorizontalAlignment="Left" Margin="16,195,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="134" Height="25" Background="{Binding Player2Color}"  ></Label>
 
         <Label Content="Next move:" HorizontalAlignment="Left" Margin="16,139,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Width="134"/>
+
+        <Button Content="Play from history" HorizontalAlignment="Left" Margin="16,309,0,0" VerticalAlignment="Top" Width="125" Command="{Binding PlayHistoryCmd}"/>
         <!--<TextBlock Content="{Binding Score}" Name="dateText"/>-->
 
 

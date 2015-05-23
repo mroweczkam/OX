@@ -13,7 +13,7 @@ namespace OX.VM
 {
     class createGrid
     {
-        public static Grid drawGrid(int size, int[][] board, Position position1,Position position2 )
+        public static Grid drawGrid(int size, string[][] board, Position position1,Position position2, Position lastMovePosition)
         {
 
             Grid grid = new Grid();
@@ -43,18 +43,17 @@ namespace OX.VM
                     Rectangle rec = new Rectangle();
                     Grid.SetRow(rec, i);
                     Grid.SetColumn(rec, j);
-                    rec.StrokeThickness = 3.0; 
+                    rec.StrokeThickness = 3.0;
 
+                    if (lastMovePosition != null && lastMovePosition.x == i && lastMovePosition.y == j)
+                        rec.Stroke = Brushes.YellowGreen;
+                   
                     if (position1.x == i && position1.y == j)
-                    {
                         rec.Stroke = Brushes.Red;
-                      
-                    }
 
                     if (position2.x == i && position2.y == j)
-                    {
                         rec.Stroke = Brushes.Blue;
-                    }
+
                    
                     grid.Children.Add(rec);
 
@@ -70,7 +69,11 @@ namespace OX.VM
 
                     TextBlock txtBlock = new TextBlock();
                     txtBlock.Visibility = Visibility.Visible;
-                   // txtBlock.Text = board[i][j].ToString();
+                    if (board[i][j] != Game.EMPTY)
+                    {
+                        txtBlock.Text = board[i][j].ToString();
+                        
+                    }
                     txtBlock.FontSize = 30.00;
 
                     stcPanel.Children.Add(txtBlock);
