@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using OX.VM;
+using System.Windows.Threading;
+
 
 namespace OX
 {
@@ -20,9 +23,19 @@ namespace OX
     /// </summary>
     public partial class MainWindow : Window
     {
+
+
+
         public MainWindow()
         {
             InitializeComponent();
+            var gameVM = new GameVM(GridMain);
+            this.DataContext = gameVM;
+
+            
+
+
+
         }
     }
 }
